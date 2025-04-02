@@ -2,10 +2,11 @@ self.addEventListener('install', (event) => {
     event.waitUntil(
         caches.open('schnitzeljagd-cache-v1').then((cache) => {
             return cache.addAll([
-                '/',
-                '/index.html',
-                '/manifest.json',
-                '/styles/App.css',
+                '/community-pwa/',
+                '/community-pwa/index.html',
+                '/community-pwa/manifest.json',
+                '/community-pwa/icons/icon-192x192.png',
+                '/community-pwa/icons/icon-512x512.png',
                 // Add other assets to cache as needed
             ]);
         })
