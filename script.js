@@ -29,24 +29,28 @@ function startScanner() {
             videoElement.srcObject = stream;
             videoElement.play();
 
-    const html5QrCode = new Html5Qrcode(videoElement.id);
+            videoElement.addEventListener('loadedmetadata', () => {
+                console.log(`Video dimensions: ${videoElement.videoWidth}x${videoElement.videoHeight}`);
+              
+            const html5QrCode = new Html5Qrcode(videoElement.id);
 
-    html5QrCode.start(
-        { facingMode: "environment" }, // Rückkamera verwenden
-        {
-            fps: 10, // Frames pro Sekunde
-            qrbox: { width: 250, height: 250 } // Scanner-Box-Größe
-        },
-        qrCodeMessage => {
-            onQRDetected(qrCodeMessage); // QR-Code erfolgreich gescannt
-        },
-        errorMessage => {
-            console.warn("QR-Code-Fehler: ", errorMessage); // Fehler beim Scannen
-        }
-    ).catch(err => {
-        console.error("Fehler beim Starten des QR-Scanners: ", err);
-        alert("Kamera konnte nicht gestartet werden. Bitte Berechtigungen überprüfen.");
-    });
+            html5QrCode.start(
+                { facingMode: "environment" }, // Rückkamera verwenden
+                {
+                    fps: 10, // Frames pro Sekunde
+                    qrbox: { width: 250, height: 250 } // Scanner-Box-Größe
+                },
+                qrCodeMessage => {
+                    onQRDetected(qrCodeMessage); // QR-Code erfolgreich gescannt
+                },
+                errorMessage => {
+                    console.warn("QR-Code-Fehler: ", errorMessage); // Fehler beim Scannen
+                }
+            ).catch(err => {
+                console.error("Fehler beim Starten des QR-Scanners: ", err);
+                alert("Kamera konnte nicht gestartet werden. Bitte Berechtigungen überprüfen.");
+            });
+        });	
 })
 .catch(err => {
         console.error("Fehler beim Zugriff auf die Kamera: ", err);
