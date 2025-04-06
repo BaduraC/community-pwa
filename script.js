@@ -1,5 +1,3 @@
-<script src="https://unpkg.com/html5-qrcode/minified/html5-qrcode.min.js"></script>
-
 let isQRScanned = false; // Status, ob der QR-Code gescannt wurde
 
 function startQRProcess() {
