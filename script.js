@@ -3,7 +3,7 @@ let isQRScanned = false; // Status, ob der QR-Code gescannt wurde
 function startQRProcess() {
     if (isQRScanned) {
         // Wenn der QR-Code bereits gescannt wurde, leite direkt weiter
-        window.location.href = 'geheimnis1.html';
+        window.location.href = 'thema1.html';
     } else {
         // Öffne den QR-Scanner
         showScanner();
@@ -53,7 +53,7 @@ function onQRDetected(qrCodeContent) {
     stopScanner();
     hideScanner();
 
-    if (qrCodeContent === 'geheimnis1') {
+    if (qrCodeContent === 'https://badurac.github.io/community-pwa/thema1.html') {
         // QR-Code ist korrekt
         isQRScanned = true;
 
@@ -66,7 +66,7 @@ function onQRDetected(qrCodeContent) {
         localStorage.setItem('qr-geheimnis1-scanned', 'true');
 
         // Weiterleitung zu geheimnis1.html
-        window.location.href = 'geheimnis1.html';
+        window.location.href = 'thema1.html';
     } else {
         alert('Ungültiger QR-Code. Bitte versuche es erneut.');
     }
