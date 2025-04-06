@@ -21,7 +21,7 @@ function hideScanner() {
 }
 
 function startScanner() {
-    const videoElement = document.getElementById('qr-video');
+    const videoElement = document.getElementById('qr-reader');
 
     // Kamera-Stream starten
     navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
