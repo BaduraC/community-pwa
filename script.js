@@ -21,8 +21,15 @@ function hideScanner() {
 }
 
 function startScanner() {
-    const qrCodeRegion = document.getElementById('qr-video');
-    const html5QrCode = new Html5Qrcode(qrCodeRegion.id);
+    const videoElement = document.getElementById('qr-video');
+
+    // Kamera-Stream starten
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
+        .then(stream => {
+            videoElement.srcObject = stream;
+            videoElement.play();
+
+    const html5QrCode = new Html5Qrcode(videoElement.id);
 
     html5QrCode.start(
         { facingMode: "environment" }, // Rückkamera verwenden
@@ -38,6 +45,11 @@ function startScanner() {
         }
     ).catch(err => {
         console.error("Fehler beim Starten des QR-Scanners: ", err);
+        alert("Kamera konnte nicht gestartet werden. Bitte Berechtigungen überprüfen.");
+    });
+})
+.catch(err => {
+        console.error("Fehler beim Zugriff auf die Kamera: ", err);
         alert("Kamera konnte nicht gestartet werden. Bitte Berechtigungen überprüfen.");
     });
 }
