@@ -18,3 +18,19 @@
     background: rgba(0, 0, 0, 0.9);
     z-index: 1000;
 }
+
+#qr-reader {
+    position: relative;
+}
+
+#qr-box-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 250px; /* Größe des qrbox */
+    height: 250px; /* Größe des qrbox */
+    transform: translate(-50%, -50%);
+    border: 2px solid red; /* Sichtbare Umrandung */
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+    pointer-events: none; /* Klicks durchlassen */
+}
